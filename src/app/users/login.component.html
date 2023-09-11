@@ -1,0 +1,138 @@
+<app-header></app-header>
+<main class="ct-login">
+	<div class="row">
+		<form (ngSubmit)="onFormSubmit()" #loginForm='ngForm'>
+			<span class="form-title">
+				<h1>{{signUp ? 'Sign Up' : 'Login'}}</h1>
+				<span class="required-legend">Required fields</span>
+			</span>
+			<div class="input-group" *ngIf="!signUp">
+				<input type="text" name="usernameLogin" [(ngModel)]="user.username" placeholder="Username" #usernameLogin="ngModel" required />
+				<span
+					*ngIf="usernameLogin && usernameLogin.errors && (usernameLogin.dirty || usernameLogin.touched)" class="field-feedback-icon"
+					[class.feedback-error]="usernameLogin.errors"
+				>
+					<span *ngIf="usernameLogin.errors && usernameLogin.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+				</span>
+				<div class="error error-field" *ngIf="usernameLogin && usernameLogin.errors && (usernameLogin.dirty || usernameLogin.touched)">
+					<span *ngIf="usernameLogin.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+				</div>
+			</div>
+			<div class="input-group" *ngIf="signUp" >
+				<input type="text" name="username" [(ngModel)]="user.username" placeholder="Username" (focus)="userNameFocus=true" (blur)="userNameFocus=false" #username="ngModel" minlength="3" maxlength="60" validateUniqueUsername required />
+				<span
+					*ngIf="signUp && username && (username.dirty || username.touched)" class="field-feedback-icon"
+					[class.feedback-success]="!username.errors"
+					[class.feedback-error]="username.errors"
+				>
+					<span *ngIf="username.errors && username.errors['validUniqueUsername']"><span class="fa fa-exclamation-circle"></span> Username taken</span>
+					<span *ngIf="username.errors && !userNameFocus && username.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+					<span *ngIf="username.errors && !userNameFocus && username.errors['unknownError']"><span class="fa fa-exclamation-circle"></span> An uknown error occurred</span>
+					<span *ngIf="username.errors && !userNameFocus && username.errors['minlength']"><span class="fa fa-exclamation-circle"></span> Cannot have less than 3 characters</span>
+					<span *ngIf="username.errors && !userNameFocus && username.errors['maxlength']"><span class="fa fa-exclamation-circle"></span> Cannot be more than 255 characters</span>
+					<span *ngIf="!username.errors"><span class="fa fa-check-circle"></span> Username available</span>
+				</span>
+				<div class="error error-field" *ngIf="username && username.errors && (username.dirty || username.touched) && (!userNameFocus || username.errors['validUniqueUsername'])">
+					<span *ngIf="username.errors['validUniqueUsername']"><span class="fa fa-exclamation-circle"></span> Username taken</span>
+					<span *ngIf="!userNameFocus && username.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+					<span *ngIf="!userNameFocus && username.errors['unknownError']"><span class="fa fa-exclamation-circle"></span> An uknown error occurred</span>
+					<span *ngIf="!userNameFocus && username.errors['minlength']"><span class="fa fa-exclamation-circle"></span> Cannot have less than 3 characters</span>
+					<span *ngIf="!userNameFocus && username.errors['maxlength']"><span class="fa fa-exclamation-circle"></span> Cannot be more than 255 characters</span>
+				</div>
+			</div>
+			<div *ngIf="signUp" class="input-group">
+				<input type="text" [(ngModel)]="user.firstname" name="firstname" placeholder="Firstname" />
+				<input type="text" [(ngModel)]="user.lastname" name="lastname" placeholder="Lastname" />
+			</div>
+			<div class="input-multi-group" *ngIf="signUp" >
+				<div class="input-group">
+					<input type="text" name="email" [(ngModel)]="user.email" (focus)="emailFocus=true" (blur)="emailFocus=false" #email="ngModel" required placeholder="Email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9\.-]+$" matchField="emailConfirm" reverse="true"/>
+					<span
+						*ngIf="!emailFocus && signUp && email && email.errors && (email.dirty || email.touched)" class="field-feedback-icon"
+						[class.feedback-error]="email.errors"
+					>
+						<span *ngIf="email.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+						<span *ngIf="email.errors['pattern']"><span class="fa fa-exclamation-circle"></span> Please enter a valid email address</span>
+					</span>
+					<div class="error error-field"
+						*ngIf="!emailFocus && email && email.errors && (email.dirty || email.touched)"
+					>
+						<span *ngIf="email.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+						<span *ngIf="email.errors['pattern']"><span class="fa fa-exclamation-circle"></span> Please enter a valid email address</span>
+					</div>
+				</div>
+				<div class="input-group">
+					<input type="text" [(ngModel)]="user.emailConfirm" (focus)="emailConfirmFocus=true" (blur)="emailConfirmFocus=false" #emailConfirm="ngModel" name="emailConfirm" required placeholder="Confirm Email" matchField="email"/>
+					<span
+						*ngIf="signUp && !emailConfirmFocus && emailConfirm && emailConfirm.errors && (emailConfirm.dirty || emailConfirm.touched)" class="field-feedback-icon"
+						[class.feedback-error]="emailConfirm.errors"
+					>
+						<span *ngIf="emailConfirm.errors['matchField'] && !emailConfirm.errors['required']"><span class="fa fa-exclamation-circle"></span> Emails do not match</span>
+						<span *ngIf="emailConfirm.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+					</span>
+					<div class="error error-field"
+						*ngIf="emailConfirm && !emailConfirmFocus && emailConfirm.errors && (emailConfirm.dirty || emailConfirm.touched)"
+					>
+						<span *ngIf="emailConfirm.errors['matchField'] && !emailConfirm.errors['required']"><span class="fa fa-exclamation-circle"></span> Emails do not match</span>
+						<span *ngIf="emailConfirm.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+					</div>
+				</div>
+			</div>
+			<div class="input-group" *ngIf="!signUp">
+				<input type="password" [(ngModel)]="user.password" #passwordLogin="ngModel" name="passwordLogin" required placeholder="Password" />
+				<span *ngIf="passwordLogin && passwordLogin.errors && (passwordLogin.dirty || passwordLogin.touched)" class="field-feedback-icon feedback-error">
+					<span *ngIf="passwordLogin.errors && passwordLogin.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+				</span>
+				<div class="error error-field" *ngIf="passwordLogin && passwordLogin.errors && (passwordLogin.dirty || passwordLogin.touched)">
+					<span *ngIf="passwordLogin.errors && passwordLogin.errors['required']"><span class="fa fa-exclamation-circle"></span> This field is required</span>
+				</div>
+			</div>
+			<div class="input-group" *ngIf="signUp">
+				<input type="password" [(ngModel)]="user.password" (ngModelChange)="testPasswordStrength()" matchField="passwordConfirm" reverse="true" #password="ngModel" name="password" required placeholder="Password" />
+				<input [(ngModel)]="user.passwordConfirm" matchField="password" #passwordConfirm="ngModel" type="password" required name="passwordConfirm" placeholder="Confirm Password" />
+				<span
+				*ngIf="
+				((
+					password && password.errors && (password.dirty || password.touched)
+				) || (
+					passwordConfirm && passwordConfirm.errors && (passwordConfirm.dirty || passwordConfirm.touched)
+				))" class="field-feedback-icon feedback-error">
+					<span *ngIf="(password.errors && password.errors['required']) || (passwordConfirm.errors && passwordConfirm.errors['required'])">
+						<span class="fa fa-exclamation-circle"></span> Both fields required
+					</span>
+
+				</span>
+				<div *ngIf="passwordScore != null && password && password.value && ( password.dirty || password.touched )" class="password-score" [ngClass]="'score-'+passwordScore">
+					<span *ngIf="passwordScore == 0">Very Risky</span>
+					<span *ngIf="passwordScore == 1">Risky</span>
+					<span *ngIf="passwordScore == 2">Good</span>
+					<span *ngIf="passwordScore == 3">Moderate</span>
+					<span *ngIf="passwordScore == 4">Strong</span>
+					<span> - Estimated crack time: {{passwordCrackTime}}</span>
+					<span class="score-bar"></span>
+				</div>
+				<div class="error error-field" *ngIf="( (password && password.errors && (password.dirty || password.touched) ) || (passwordConfirm && passwordConfirm.errors && (passwordConfirm.dirty || passwordConfirm.touched) ) )">
+					<span *ngIf="(password.errors && password.errors['required']) || (passwordConfirm.errors && passwordConfirm.errors['required'])">
+						<span class="fa fa-exclamation-circle"></span> Both fields required
+					</span>
+				</div>
+			</div>
+			<div class="input-group" *ngIf="!signUp">
+				<div class="checkbox">
+					<input id="remember" type="checkbox" [(ngModel)]="user.remember" name="remember" #remember="ngModel" />
+					<label for="remember"></label>
+					<span>Remember Me</span>
+				</div>
+			</div>
+			<div class="input-group">
+				<div class="error error-field error-desktop" *ngIf="fieldError">
+					<span>{{fieldError}}</span>
+				</div>
+				<a *ngIf="!signUp" [routerLink]="['/signup']" class="btn-secondary">Signing Up?</a>
+				<a *ngIf="signUp" [routerLink]="['/login']" class="btn-secondary"><span class="fa fa-arrow-left"></span> Back to login</a>
+				<button type="submit" class="btn-highlight" [disabled]="!loginForm.form.valid" value="Submit">Submit <span class="fa fa-sign-in"></span></button>
+			</div>
+		</form>
+	</div>
+</main>
+<app-footer></app-footer>

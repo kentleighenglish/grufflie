@@ -1,0 +1,17 @@
+<div class="item-grid {{maxCols ? 'max-cols-'+maxCols : ''}}" *ngIf="items && items.length">
+	<ul>
+		<li *ngFor="let item of items">
+			<item-grid-element [item]='item'></item-grid-element>
+		</li>
+	</ul>
+</div>
+<div class="item-grid {{maxCols ? 'max-cols-'+maxCols : ''}}" *ngIf="relations && relations.length">
+	<ul>
+		<li *ngFor="let relation of relations">
+			<item-grid-element [relation]='relation'></item-grid-element>
+		</li>
+	</ul>
+</div>
+<div class="item-grid" *ngIf="items && !items.length || relations && !relations.length">
+	<p>{{items && items.length ? 'No Results' : 'No Similar items'}}</p>
+</div>

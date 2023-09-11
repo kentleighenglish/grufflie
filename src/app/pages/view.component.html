@@ -1,0 +1,25 @@
+<app-header></app-header>
+<main class="ct-view">
+	<div class="row" *ngIf="item">
+		<aside class="col-side">
+			<div class="item-profile">
+				<div class="thumb-container large">
+					<div class="thumb">
+						<img *ngIf="item.metadata.thumb" src="{{item.metadata.thumb}}"/>
+					</div>
+				</div>
+				<h1 class="item-name">{{item.name}}</h1>
+				<div class="item-metadata" *ngIf="metadataFields">
+					<div class="metadata-field" *ngFor="let metadataField of metadataFields">
+						<metadata-field [metadataField]="metadataField" [metadataValue]="item.metadata[metadataField.name]" [item]="item"></metadata-field>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<section class="col-main">
+			<h2>Similar {{item.type}}s</h2>
+			<item-grid [maxCols]="3" [relations]="item.relations"></item-grid>
+		</section>
+	</div>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,113 @@
+
+div.item-grid {
+	margin-top: $gap;
+
+	ul {
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		width: 100%;
+
+		@media(min-width: $bp-sm) {
+			margin: 0 ( $gap / 2 )*-1;
+		}
+	}
+
+	&.max-cols-3 {
+		li {
+			@media(min-width: $bp-md) {
+				width: ( 100% / 3 );
+			}
+		}
+	}
+
+	&.max-cols-2 {
+		li {
+			@media(min-width: $bp-sm) {
+				width: 50%;
+			}
+		}
+	}
+
+	li {
+		display: inline-block;
+		width: 100%;
+		flex-basis: auto;
+		margin-bottom: ( $gap / 2 );
+		height: 120px;
+		box-sizing: border-box;
+
+		@media(min-width: $bp-sm) {
+			width: 50%;
+			padding: 0 ( $gap / 2 );
+		}
+		@media(min-width: $bp-md) {
+			width: ( 100% / 3 );
+			padding: 0 ( $gap / 2 );
+		}
+		@media(min-width: $bp-lg) {
+			width: 25%;
+			padding: 0 ( $gap / 2 );
+		}
+
+		item-grid-element {
+			position: relative;
+
+			a {
+				@include texturedBg($brand-secondary-dark, $bg-pattern2);
+				color: $brand-secondary-darker;
+				width: 100%;
+				height: 100%;
+				display: block;
+				padding: ( $gap / 2 );
+				box-sizing: border-box;
+			}
+		}
+
+		.item-grid-container {
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+
+		.thumb-container {
+			width: 100px;
+			max-width: 30%;
+			float: left;
+		}
+
+		.info {
+			width: 100%;
+			max-width: 70%;
+			float: right;
+			padding-left: ( $gap / 2 );
+			box-sizing: border-box;
+
+			h3 {
+				margin: 0;
+				padding: 0;
+				font-size: $font-lg;
+				font-weight: $regular;
+				// line-height: $font-lg;
+			}
+
+			.right {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+
+			span {
+				font-weight: $light;
+				font-size: $font-md;
+
+				.count {
+					font-weight: $bold;
+				}
+			}
+		}
+
+	}
+}

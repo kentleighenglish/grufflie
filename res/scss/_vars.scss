@@ -1,0 +1,77 @@
+
+//Brand Colours
+$brand-primary: #B200FF;
+$brand-primary-dark: darken($brand-primary, 10%);
+$brand-primary-darker: #662F7D;
+$brand-primary-light: desaturate(lighten($brand-primary, 20%), 35%);
+
+$brand-secondary: #40DE97;
+$brand-secondary-light: lighten($brand-secondary, 20%);
+$brand-secondary-dark: #00B262;
+$brand-secondary-darker: #005a35;
+
+$brand-tertiary: #004c52;
+$brand-tertiary-dark: darken($brand-tertiary, 5%);
+$brand-tertiary-darker: darken($brand-tertiary, 10%);
+
+$brand-highlight: #FFB619;
+$brand-highlight-dark: darken($brand-highlight, 10%);
+$brand-highlight-darker: darken($brand-highlight, 40%);
+
+$brand-critical: #FF4A26;
+$brand-critical-dark: darken($brand-critical, 10%);
+$brand-critical-darker: darken($brand-critical, 40%);
+
+$brand-grey: #828487;
+$brand-grey-dark: #474B4F;
+$brand-grey-darker: #303336;
+$brand-grey-light: #D7DBE0;
+$brand-grey-lighter: #E1E5EB;
+
+$base-text-colour: white;
+$base-font: "Mukta Vaani", Arial;
+
+//Font sizes
+$base-font-size: 16px;
+$font-sm: ( $base-font-size - $base-font-size / 16);
+$font-md: ( $base-font-size + $base-font-size / 8);
+$font-lg: ( $base-font-size + $base-font-size / 4);
+$font-xl: ( $base-font-size * 2 );
+
+$gap: 20px;
+
+//Breakpoints
+$bp-lg: 1600px;
+$bp-lg-min: $bp-lg;
+
+$bp-md: 1200px;
+$bp-md-min: $bp-md;
+$bp-md-max: $bp-lg - 1;
+
+$bp-sm: 768px;
+$bp-sm-min: $bp-sm;
+$bp-sm-max: $bp-md - 1;
+
+
+//Font Weights
+$xlight: 200;
+$light: 300;
+$regular: 400;
+$semibold: 500;
+$bold: 600;
+
+//Forms
+$input-bg: $brand-secondary-dark;
+$input-colour: $brand-secondary-darker;
+$input-placeholder-colour: darken($brand-secondary-dark, 10%);
+$input-height: 44px;
+
+//Background Patterns
+$bg-pattern1: 'weave';
+$bg-pattern2: 'wave';
+$bg-pattern3: 'seigaiha';
+$bg-pattern4: 'zebra';
+$bg-pattern5: 'asanoha';
+$bg-pattern6: 'degree';
+$bg-pattern7: 'halftone';
+$bg-pattern8: 'black';

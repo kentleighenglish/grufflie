@@ -1,0 +1,32 @@
+<form (ngSubmit)="onFormSave()" #metadataFieldForm='ngForm' *ngIf="user.auth">
+	<label *ngIf="metadataField.label && (metadataValue || metadataField.empty)" for="metadataField.name">{{metadataField.label}}</label>
+	<div class="metadata-display" *ngIf="!editing">
+		<div class="field-value">
+			<p *ngIf="!metadataValue">No {{metadataField.name}} set</p>
+			<p *ngIf="metadataField.type == 'text' || metadataField.type == 'textarea'">{{metadataValue}}</p>
+			<a *ngIf="metadataField.type == 'url'" href="{{metadataValue}}" target="_blank">{{metadataValue}}</a>
+		</div>
+		<div class="field-controls">
+			<button (click)="editing = true" title="{{'Edit '+metadataField.name}}"><span class="fa fa-pencil-square-o"></span></button>
+		</div>
+	</div>
+	<div class="metadata-input" *ngIf="editing">
+		<input *ngIf="metadataField.type == 'text'" type="text" name="metadataField.name" [(ngModel)]='metadataValue' />
+		<input *ngIf="metadataField.type == 'url'" type="url" name="metadataField.name" [(ngModel)]='metadataValue' />
+		<textarea *ngIf="metadataField.type == 'textarea'" name="metadataField.name" [(ngModel)]='metadataValue'></textarea>
+		<div class="field-controls">
+			<button type="submit" title="{{'Save '+metadataField.name}}"><span class="fa fa-check-circle-o"></span></button>
+		</div>
+		<div class="error error-field" *ngIf="error">
+			{{error}}
+		</div>
+	</div>
+</form>
+<label *ngIf="!user.auth && metadataField.label && (metadataValue || metadataField.empty)">{{metadataField.label}}</label>
+<div class="metadata-display" *ngIf="!user.auth && (metadataValue || metadataField.empty)">
+	<div class="field-value">
+		<p *ngIf="!metadataValue && metadataField.empty">{{metadataField.empty}}</p>
+		<p *ngIf="metadataField.type == 'text' || metadataField.type == 'textarea'">{{metadataValue}}</p>
+		<a *ngIf="metadataField.type == 'url'" href="{{metadataValue}}" target="_blank">{{metadataValue}}</a>
+	</div>
+</div>

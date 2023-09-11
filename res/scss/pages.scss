@@ -1,0 +1,257 @@
+/*=========== LANDING PAGE ===========*/
+
+.ct-landing {
+	.logo {
+		margin-top: $gap * 4;
+
+		@media(min-width: $bp-sm) {
+			margin-top: 100px;
+		}
+	}
+
+	search {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+
+		@media(min-width: $bp-sm) {
+			width: 540px;
+		}
+	}
+}
+
+/*=========== RESULTS PAGE ===========*/
+
+.advanced {
+	margin-bottom: $gap / 2;
+	.toggle {
+		margin-top: $gap / 4;
+		display: inline-block;
+
+		@media(min-width: $bp-sm) {
+			float: right;
+			margin-bottom: 0;
+		}
+
+		label {
+			font-size: $font-sm;
+			font-weight: $light;
+
+			@media(min-width: $bp-sm) {
+				&:hover {
+					cursor: pointer;
+					color: $brand-highlight;
+				}
+			}
+		}
+
+		margin-right: 60px;
+
+
+		span {
+			margin-left: 4px;
+			vertical-align: middle;
+		}
+	}
+
+	.advanced-fields {
+		padding: $gap / 2;
+	}
+}
+
+/*=========== VIEW PAGE ===========*/
+
+.ct-view {
+	h2 {
+	}
+
+	.item-profile {
+		@include texturedBg($brand-secondary-dark, $bg-pattern3);
+		padding: $gap;
+		color: $brand-secondary-darker;
+		min-height: 250px;
+
+		h1.item-name {
+			display: inline-block;
+			width: 50%;
+			font-size: $font-xl;
+			line-height: .8em;
+		}
+
+		.thumb-container {
+			margin-right: $gap / 2;
+			margin-bottom: $gap;
+
+			@media(min-width: $bp-md) {
+				margin-bottom: $gap / 2;
+			}
+		}
+
+		div.metadata-field {
+			label {
+				display: block;
+				clear: right;
+			}
+
+			&:hover {
+				.metadata-display .field-controls {
+					display: block;
+				}
+			}
+
+			.metadata-display {
+				display: inline-block;
+
+				.field-value {
+					float: left;
+				}
+				.field-controls {
+					float: right;
+					margin-left: ($gap/2);
+					display: none;
+
+					button {
+						background-color: initial;
+						color: $brand-secondary-darker;
+						font-size: $font-md;
+						line-height: $font-md;
+						padding: 2px;
+						margin: 8px;
+
+						&:hover {
+							color: $brand-secondary;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*=========== LOGIN PAGE ===========*/
+
+.ct-login {
+	form {
+		width: 100%;
+		margin: $gap*2 auto;
+		box-sizing: border-box;
+		padding: 0 $gap/2;
+
+		@media(min-width: $bp-sm) {
+			width: 400px;
+		}
+
+		.form-title {
+			display: block;
+			margin: 0 0 $gap;
+
+			h1 {
+				margin: 0;
+				vertical-align: middle;
+				display: inline-block;
+			}
+
+			.required-legend {
+				display: block;
+				float: right;
+
+				border-left: 3px solid $brand-highlight;
+				padding-left: $gap/4;
+				vertical-align: middle;
+				margin-top: -.2em;
+
+				height: 1.5em;
+				line-height: 1.5em;
+				font-size: $font-sm;
+			}
+		}
+
+
+		.input-group {
+			margin: 0 ($gap/4)*-1;
+		}
+		input {
+			display: block;
+			width: 50%;
+			flex: 1;
+		}
+		a, button, input, .error-field, .checkbox {
+			margin: $gap/4;
+		}
+	}
+
+	.password-score {
+		display: block;
+		width: 100%;
+		margin: $gap/4 0;
+		padding: $gap/4;
+		color: $brand-grey-darker;
+
+		span {
+			font-size: $font-sm;
+			transition: .5s;
+		}
+
+		&.score-0 {
+			color: $brand-critical-dark;;
+			.score-bar {
+				&:before {
+					width: 20%;
+					background-color: $brand-critical-dark;
+				}
+			}
+		}
+		&.score-1 {
+			color: $brand-critical;
+			.score-bar {
+				&:before {
+					width: 40%;
+					background-color: $brand-critical;
+				}
+			}
+		}
+		&.score-2 {
+			color: $brand-highlight;
+			.score-bar {
+				&:before {
+					width: 60%;
+					background-color: $brand-highlight;
+				}
+			}
+		}
+		&.score-3 {
+			color: $brand-secondary-dark;
+			.score-bar {
+				&:before {
+					width: 80%;
+					background-color: $brand-secondary-dark;
+				}
+			}
+		}
+		&.score-4 {
+			color: $brand-primary;
+			.score-bar {
+				&:before {
+					width: 100%;
+					background-color: $brand-primary;
+				}
+			}
+		}
+
+		.score-bar {
+			display: block;
+			width: 100%;
+			height: 5px;
+			background-color: $brand-tertiary-dark;
+			margin: $gap/2 0 0;
+
+			&:before {
+				display: block;
+				content: "";
+				height: 5px;
+				width: 1px;
+				transition: .5s;
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+<a [routerLink]="['/view', id]">
+	<div class="item-grid-container">
+			<div class="thumb-container">
+				<div class="thumb">
+					<img *ngIf="item.metadata['thumb']" src="{{item.metadata.thumb}}" />
+				</div>
+			</div>
+			<div class="info">
+				<h3 class="item-name" *ngIf="item">{{item.name}}</h3>
+				<h3 class="item-name" *ngIf="relation">{{relation.item.name}}</h3>
+				<div class="right">
+					<!-- <span><span class="count">10</span> Fans</span><br> -->
+					<span *ngIf="item"><span class="count">{{item.relations.length}}</span> Similar {{item.type}}s</span>
+					<span *ngIf="relation"><span class="count">{{relation.relationCount}}</span> Similar {{relation.item.type}}s</span>
+				</div>
+			</div>
+	</div>
+</a>

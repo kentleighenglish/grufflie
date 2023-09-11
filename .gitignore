@@ -1,0 +1,8 @@
+node_modules
+.hg
+.hgignore
+.map
+.aot
+api/core/db_config.php
+npm-debug.log
+media/

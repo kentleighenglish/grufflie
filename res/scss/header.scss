@@ -1,0 +1,35 @@
+header {
+	padding: ( $gap / 2 ) 0;
+
+	.logo {
+		margin: 0;
+	}
+
+	logo, search {
+		display: block;
+		vertical-align: middle;
+
+		@media(min-width: $bp-sm) {
+			display: inline-block;
+		}
+	}
+
+	logo {
+		margin-right: $gap * 2;
+	}
+
+	search {
+		width: 100%;
+		position: relative;
+
+		@media(min-width: $bp-sm) {
+			width: 320px;
+		}
+
+		div.suggested {
+			position: absolute;
+			left: 0;
+			right: 0px;
+		}
+	}
+}

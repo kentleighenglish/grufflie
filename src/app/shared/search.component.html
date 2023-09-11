@@ -1,0 +1,46 @@
+<div class="search-container" (keydown)="scrollSelection($event)" #container>
+	<div class="search-field">
+		<form (ngSubmit)="onFormSubmit()" #searchForm='ngForm'>
+			<div class="search">
+				<input
+					name="filterQuery"
+					type="text"
+					placeholder="My Favourite Band"
+					[(ngModel)]='filter.query'
+					(ngModelChange)="onQueryChange()"
+					autocomplete="off"
+					#search
+					tabindex="1"
+					(focus)="hideSuggestions=false" (blur)="hideSuggestions=true"
+				/>
+				<button type="submit" [disabled]="!searchForm.form.valid">
+					<span class="fa fa-search"></span>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div class="suggested" [class.open]="!hideSuggestions && this.filterStatus != 'empty'">
+		<div *ngIf="this.filterStatus == 'done' && results && results.length">
+			<ul>
+				<li class="item" *ngFor="let result of results">
+					<a [routerLink]="['/view', result.id]" (click)="onItemClick()" (keydown.enter)="onItemClick(result.id)" (focus)="hideSuggestions=false" (blur)="hideSuggestions=true">
+						<div class="thumb-container">
+							<div class="thumb">
+								<img src='{{result.metadata.thumb}}' *ngIf='result.metadata.thumb' />
+							</div>
+						</div>
+						<div class="name">
+							<span>{{result.name}}</span>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div *ngIf="this.filterStatus == 'done' && !results.length">
+			<ul><li>No Results</li></ul>
+		</div>
+		<div *ngIf="this.filterStatus == 'pending'">
+			<ul><li>Pending</li></ul>
+		</div>
+	</div>
+</div>

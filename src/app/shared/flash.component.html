@@ -1,0 +1,8 @@
+<div class="notifications" *ngIf="notifications">
+	<div *ngFor="let notification of notifications" class="notification" [class.open]="notification.status == 'open'">
+		<div class="notification-content" [ngClass]="notification.type">
+			<span>{{notification.type == 'error' ? 'Error: ' : ''}} {{notification.text}}</span>
+			<a (click)="notification.destroy()"><span class="fa fa-times"></span></a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+## Enable Mod Rewrite, this is only required once in each .htaccess file
+RewriteEngine On 
+RewriteBase / 
+
+# Forbidden paths
+RewriteCond %{REQUEST_URI} /.*docs|e2e|aot/ [NC] 
+RewriteRule .* - [F,NS,L]
+
+#Forbidden node_modules unless accessing JS file
+RewriteCond %{REQUEST_URI} /node_modules/
+RewriteCond %{REQUEST_FILENAME} ^.*\.(?!(css|js|ttf|woff2|woff|eot|svg)$)[^.]+$
+RewriteRule .* - [F,NS,L]
+
+#Forbidden media unless accessing an image file
+RewriteCond %{REQUEST_URI} /media/
+RewriteCond %{REQUEST_FILENAME} ^.*\.(?!(jpg|png|svg|gif)$)[^.]+$ [OR]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* - [F,NS,L]
+
+#Free access to assets and api folder
+RewriteCond %{REQUEST_URI} ^.*(api\/|assets\/).*$
+RewriteRule .* - [NS,L]
+
+RewriteCond %{REQUEST_FILENAME} /^.*\.css/
+RewriteRule .* - [NS,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*)$ index.php [L]

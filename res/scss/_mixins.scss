@@ -1,0 +1,5 @@
+
+@mixin texturedBg($colour, $pattern){
+	background: url('../../src/assets/pat/#{$pattern}.png'), $colour;
+	background-blend-mode: multiply;
+}

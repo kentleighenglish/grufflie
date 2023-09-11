@@ -1,0 +1,9 @@
+	<footer>
+		<ul class="footer-links">
+			<li *ngFor="let link of footerLinks">
+				<a *ngIf="link.route" routerLink="{{link.route}}">{{link.text}}</a>
+				<a *ngIf="link.action" (click)="call(link.action)">{{link.text}}</a>
+				<span class="fa fa-circle"></span>
+			</li>
+		</ul>
+	</footer>

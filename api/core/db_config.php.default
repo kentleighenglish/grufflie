@@ -1,0 +1,14 @@
+<?php
+$config = [
+	'host' => 'localhost',
+	'schema' => 'grufflie',
+	'username' => 'username',
+	'password' => 'password'
+];
+
+$crawler_db = [
+	'host' => 'localhost',
+	'schema' => 'grufflie',
+	'username' => 'username',
+	'password' => 'password'
+];

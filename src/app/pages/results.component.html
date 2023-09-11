@@ -1,0 +1,47 @@
+<app-header [search]='false'></app-header>
+<main class="ct-results">
+	<div class="advanced-search">
+		<form (ngSubmit)="onFormSubmit()" #advSearchForm='ngForm'>
+			<div class="search">
+				<input
+					name="filterQuery"
+					type="text"
+					placeholder="My Favourite Band"
+					[(ngModel)]='filter.query'
+					autocomplete="off"
+				/>
+				<button class="search-submit" type="submit" [disabled]="!advSearchForm.form.valid">
+					<span class="fa fa-search"></span>
+				</button>
+			</div>
+			<div class="advanced">
+				<div class="toggle">
+					<label>Advanced Search
+						<span class="fa fa-filter" *ngIf="!showAdv.checked"></span>
+						<span class="fa fa-chevron-circle-up" *ngIf="showAdv.checked"></span>
+						<input type="checkbox" [hidden]="true" #showAdv (change)="0" />
+					</label>
+				</div>
+				<div class="advanced-fields" [hidden]='!showAdv.checked'>
+					<select
+						name="filterTags"
+						[(ngModel)]="filter.type"
+					>
+						<option *ngFor="let type of types" value={{type}}>
+							{{type | ucfirst}}
+						</option>
+					</select>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	<item-grid *ngIf="this.results.length" [items]='this.results'></item-grid>
+	<div class="load-more-center">
+		<a *ngIf="!totalReached" (click)="onLoadMore()" class="load-more">
+			<div>Load More</div>
+			<span class="fa fa-angle-down"></span>
+		</a>
+	</div>
+</main>
+<app-footer></app-footer>
